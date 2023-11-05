@@ -1,4 +1,4 @@
--- 1. nobel Nobel Laureates
+-- 1. Nobel Laureates
 -- We continue practicing simple SQL queries on a single table. This tutorial is concerned with a table of Nobel prize winners:
 
 SELECT yr, subject, winner
@@ -19,27 +19,27 @@ AND subject = 'literature'
 
 -- 3. Albert Einstein
 
-select yr, subject 
-from nobel
-where winner = 'Albert Einstein'
+SELECT yr, subject 
+FROM nobel
+WHERE winner = 'Albert Einstein'
 
 
 
 -- 4. Recent Peace Prizes
 -- Give the name of the 'peace' winners since the year 2000, including 2000.
 
-select winner
-from nobel
-where yr >= 2000 and subject = 'peace'
+SELECT winner
+FROM nobel
+WHERE yr >= 2000 AND subject = 'peace'
 
 
 
 -- 5. Literature in the 1980's
 -- Show all details (yr, subject, winner) of the literature prize winners for 1980 to 1989 inclusive.
 
-select yr, subject, winner
-from nobel
-where (yr between 1980 and 1989) and (subject = 'literature')
+SELECT yr, subject, winner
+FROM nobel
+WHERE (yr BETWEEN 1980 AND 1989) AND (subject = 'literature')
 
 
 
@@ -65,9 +65,9 @@ WHERE winner IN (
 -- 7. John
 -- Show the winners with first name John
 
-select winner
-from nobel
-where winner like 'John%'
+SELECT winner
+FROM nobel
+WHERE winner LIKE 'John%'
 
 
 
@@ -76,18 +76,18 @@ where winner like 'John%'
 -- Show the year, subject, and name of physics winners for 1980 together with the chemistry winners for 1984.
 
 
-select *
-from nobel
-where (yr = 1980 and subject = 'physics') or (yr = 1984 and subject = 'chemistry')
+SELECT *
+FROM nobel
+WHERE (yr = 1980 and subject = 'physics') OR (yr = 1984 and subject = 'chemistry')
 
 
 
 -- 9. Exclude Chemists and Medics 
 -- Show the year, subject, and name of winners for 1980 excluding chemistry and medicine
 
-select *
-from nobel
-where yr = 1980 and not subject in ('chemistry', 'medicine')
+SELECT *
+FROM nobel
+WHERE yr = 1980 AND NOT subject IN ('chemistry', 'medicine')
 
 
 
@@ -95,9 +95,9 @@ where yr = 1980 and not subject in ('chemistry', 'medicine')
 -- 10. Show year, subject, and name of people who won a 'Medicine' prize in an early year (before 1910, not including 1910) together with winners of a 'Literature' prize in a later year (after 2004, including 2004)
 
 
-select yr, subject, winner
-from nobel
-where (yr < 1910 and subject = 'Medicine') or (yr >= 2004 and subject = 'Literature')
+SELECT yr, subject, winner
+FROM nobel
+WHERE (yr < 1910 and subject = 'Medicine') OR (yr >= 2004 AND subject = 'Literature')
 
 
 
@@ -115,9 +115,9 @@ WHERE winner LIKE 'peter gr%nberg'
 -- 12. Apostrophe
 -- Find all details of the prize won by EUGENE O'NEILL
 
-select * 
-from nobel
-where winner = 'Eugene O''neill'
+SELECT * 
+FROM nobel
+WHERE winner = 'Eugene O''neill'
 
 
 
@@ -125,10 +125,10 @@ where winner = 'Eugene O''neill'
 -- List the winners, year and subject where the winner starts with Sir. Show the the most recent first, then by name order.
 
 
-select winner, yr, subject
-from nobel
-where winner like 'Sir%'
-order by yr DESC, winner
+SELECT winner, yr, subject
+FROM nobel
+WHERE winner like 'Sir%'
+ORDER BY yr DESC, winner
 
 
 
@@ -138,6 +138,6 @@ order by yr DESC, winner
 SELECT winner, subject
 FROM nobel
 WHERE yr=1984
-order by
-case when subject IN ('physics', 'chemistry') then 1 else 0 END,
+ORDER BY
+CASE WHEN subject IN ('physics', 'chemistry') THEN 1 ELSE 0 END,
 subject, winner

@@ -1,4 +1,4 @@
-- 1. Introduction
+-- 1. Introduction
 -- Read the notes about this table. Observe the result of running this SQL command to show the name, continent and population of all countries.
 
 SELECT name, continent, population 
@@ -18,8 +18,8 @@ WHERE population >= 200000000
 -- 3. Per capita GDP
 -- Give the name and the per capita GDP for those countries with a population of at least 200 million.
 
-select name, gdp/population
-from world 
+SELECT name, gdp/population
+FROM world 
 where population > 200000000
 
 
@@ -27,8 +27,8 @@ where population > 200000000
 -- 4. South America In millions
 -- Show the name and population in millions for the countries of the continent 'South America'. Divide the population by 1000000 to get population in millions.
 
-select name, population/1000000
-from world
+SELECT name, population/1000000
+FROM world
 where continent = 'South America'
 
 
@@ -37,27 +37,27 @@ where continent = 'South America'
 -- 5. France, Germany, Italy
 -- Show the name and population for France, Germany, Italy
 
-select name, population 
-from world
-where name in ('France', 'Germany', 'Italy')
+SELECT name, population 
+FROM world
+WHERE name IN ('France', 'Germany', 'Italy')
 
 
 
 -- 6. United
 -- Show the countries which have a name that includes the word 'United'
 
-select name
-from world
-where name like 'United%'
+SELECT name
+FROM world
+WHERE name LIKE 'United%'
 
 
 
 -- 7. Two ways to be big
 -- Two ways to be big: A country is big if it has an area of more than 3 million sq km or it has a population of more than 250 million. Show the countries that are big by area or big by population. Show name, population and area.
 
-select name, population, area
-from world
-where area > 3000000 or population > 250000000
+SELECT name, population, area
+FROM world
+WHERE area > 3000000 OR population > 250000000
 
 
 
@@ -70,10 +70,10 @@ where area > 3000000 or population > 250000000
 -- United Kingdom has a small population and a small area, it should be excluded.
 
 
-select name, population, area
-from world
-where (area > 3000000 or population > 250000000) 
-and not (area > 3000000 and population > 250000000)
+SELECT name, population, area
+FROM world
+WHERE (area > 3000000 OR population > 250000000) 
+AND NOT (area > 3000000 AND population > 250000000)
 
 
 
@@ -81,7 +81,7 @@ and not (area > 3000000 and population > 250000000)
 -- Show the name and population in millions and the GDP in billions for the countries of the continent 'South America'. Use the round function to show the values to two decimal places. For South America show population in millions and GDP in billions both to 2 decimal places.
 
 
-SELECT name, round(population/1000000,2) as Population , round(gdp/1000000000, 2) as GDP
+SELECT name, ROUND(population/1000000,2) AS Population , ROUND(gdp/1000000000, 2) AS GDP
 FROM world
 WHERE continent = 'South America'
 
@@ -103,9 +103,9 @@ WHERE gdp > 1000000000000
 -- You can use the LENGTH function to find the number of characters in a string
 
 
-select name, capital
-from world
-where length(name) = length(capital)
+SELECT name, capital
+FROM world
+WHERE length(name) = length(capital)
 
 
 
@@ -127,11 +127,11 @@ WHERE left(name, 1) = left(capital, 1) xor name = capital
     -- The query shown misses countries like Bahamas and Belarus because they contain at least one 'a'
 
 
-select name 
-from world
-where name like '%a%' and 
-name  like '%e%' and 
-name  like '%i%' and 
-name  like '%o%' and 
-name  like '%u%' and 
-name not like '% %'
+SELECT name 
+FROM world
+WHERE name LIKE '%a%' AND 
+name  LIKE '%e%' AND 
+name  LIKE '%i%' AND 
+name  LIKE '%o%' AND 
+name  LIKE '%u%' AND 
+name NOT LIKE '% %'
